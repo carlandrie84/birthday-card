@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday!</title>
+    <style>
+        :root {
+            --primary-color: #d4a373;
+            --background-color: #fefae0;
+            --card-background: #ffffff;
+            --text-color: #333333;
+            --accent-color: #e63946;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            color: var(--accent-color);
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        p.subtitle {
+            font-size: 1.2rem;
+            color: #666;
+        }
+
+        .audio-player {
+            background-color: var(--card-background);
+            padding: 15px 25px;
+            border-radius: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            max-width: 1000px;
+            width: 100%;
+        }
+
+        .card {
+            background-color: var(--card-background);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 20px;
+            text-align: center;
+        }
+
+        blockquote {
+            font-style: italic;
+            font-size: 1.1rem;
+            margin: 0;
+            color: #555;
+            line-height: 1.5;
+        }
+
+        footer {
+            margin-top: 40px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Happy Birthday! 🎉</h1>
+        <p class="subtitle">Wishing you a day filled with love, joy, and wonderful memories.</p>
+    </header>
+
+    <!-- Audio Section -->
+    <div class="audio-player">
+        <span>🎵 Background Music:</span>
+        <!-- Store your audio file in the repository (e.g., song.mp3) and update this path -->
+        <audio controls loop>
+            <source src="song.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+    </div>
+
+    <!-- Gallery of Quotes and Images -->
+    <div class="gallery">
+
+        <div class="card">
+            <!-- Place your image in the repo (e.g., image1.jpg) or use an external URL -->
+            <img src="https://images.unsplash.com/photo-1513151233558-d860c5398176?q=80&w=800&auto=format&fit=crop" alt="Flowers">
+            <div class="card-content">
+                <blockquote>"A mother's love is peace. It need not be acquired, it need not be deserved."</blockquote>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?q=80&w=800&auto=format&fit=crop" alt="Celebration">
+            <div class="card-content">
+                <blockquote>"Life doesn't come with a manual, it comes with a mother."</blockquote>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?q=80&w=800&auto=format&fit=crop" alt="Cake and Candles">
+            <div class="card-content">
+                <blockquote>"Thank you for being a constant source of warmth, kindness, and inspiration."</blockquote>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>Created with love for a special day.</p>
+    </footer>
+
+</body>
+</html>
