@@ -24,9 +24,45 @@
             align-items: center;
         }
 
+        /* Fullscreen Overlay for Auto-play Bypass */
+        #welcome-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--background-color);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            text-align: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .start-btn {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: transform 0.2s ease, background-color 0.2s ease;
+            margin-top: 20px;
+        }
+
+        .start-btn:hover {
+            transform: scale(1.05);
+            background-color: #c92a37;
+        }
+
         header {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
         }
 
         h1 {
@@ -42,56 +78,82 @@
 
         .audio-player {
             background-color: var(--card-background);
-            padding: 15px 25px;
+            padding: 12px 25px;
             border-radius: 30px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            margin-bottom: 30px;
+            margin-bottom: 25px;
             display: flex;
             align-items: center;
             gap: 15px;
         }
 
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            max-width: 1000px;
+        /* Slideshow Container */
+        .slideshow-container {
+            max-width: 700px;
             width: 100%;
-        }
-
-        .card {
+            position: relative;
             background-color: var(--card-background);
             border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
         }
 
-        .card:hover {
-            transform: translateY(-5px);
+        .slide {
+            display: none;
+            text-align: center;
         }
 
-        .card img {
+        .slide img {
             width: 100%;
-            height: 250px;
+            height: 400px;
             object-fit: cover;
         }
 
-        .card-content {
+        .slide-content {
             padding: 20px;
-            text-align: center;
         }
 
         blockquote {
             font-style: italic;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             margin: 0;
             color: #555;
             line-height: 1.5;
         }
 
+        /* Slide Animation */
+        .fade {
+            animation-name: fade;
+            animation-duration: 1s;
+        }
+
+        @keyframes fade {
+            from {opacity: .4} 
+            to {opacity: 1}
+        }
+
+        /* Dots Indicator */
+        .dots-container {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .dot {
+            height: 12px;
+            width: 12px;
+            margin: 0 4px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.6s ease;
+        }
+
+        .active {
+            background-color: var(--accent-color);
+        }
+
         footer {
-            margin-top: 40px;
+            margin-top: 30px;
             text-align: center;
             font-size: 0.9rem;
             color: #777;
@@ -100,6 +162,13 @@
 </head>
 <body>
 
+    <!-- Welcome Overlay (Starts Audio on Click) -->
+    <div id="welcome-screen">
+        <h1>🎁 A Special Birthday Surprise!</h1>
+        <p class="subtitle">Click below to open your card</p>
+        <button class="start-btn" onclick="startCard()">Open Birthday Card 🎵</button>
+    </div>
+
     <header>
         <h1>Happy Birthday! 🎉</h1>
         <p class="subtitle">Wishing you a day filled with love, joy, and wonderful memories.</p>
@@ -107,44 +176,82 @@
 
     <!-- Audio Section -->
     <div class="audio-player">
-        <span>🎵 Background Music:</span>
-        <!-- Store your audio file in the repository (e.g., song.mp3) and update this path -->
-        <audio controls loop>
+        <span>🎵 Playing Music</span>
+        <audio id="bg-music" controls loop>
             <source src="song.mp3" type="audio/mpeg">
             Your browser does not support the audio element.
         </audio>
     </div>
 
-    <!-- Gallery of Quotes and Images -->
-    <div class="gallery">
+    <!-- Slideshow Gallery -->
+    <div class="slideshow-container">
 
-        <div class="card">
-            <!-- Place your image in the repo (e.g., image1.jpg) or use an external URL -->
-            <img src="https://images.unsplash.com/photo-1513151233558-d860c5398176?q=80&w=800&auto=format&fit=crop" alt="Flowers">
-            <div class="card-content">
+        <div class="slide fade">
+            <img src="photo1.jpg" alt="Photo 1">
+            <div class="slide-content">
                 <blockquote>"A mother's love is peace. It need not be acquired, it need not be deserved."</blockquote>
             </div>
         </div>
 
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?q=80&w=800&auto=format&fit=crop" alt="Celebration">
-            <div class="card-content">
+        <div class="slide fade">
+            <img src="photo2.jpg" alt="Photo 2">
+            <div class="slide-content">
                 <blockquote>"Life doesn't come with a manual, it comes with a mother."</blockquote>
             </div>
         </div>
 
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?q=80&w=800&auto=format&fit=crop" alt="Cake and Candles">
-            <div class="card-content">
+        <div class="slide fade">
+            <img src="photo3.jpg" alt="Photo 3">
+            <div class="slide-content">
                 <blockquote>"Thank you for being a constant source of warmth, kindness, and inspiration."</blockquote>
             </div>
         </div>
 
     </div>
 
+    <!-- Dots -->
+    <div class="dots-container">
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+    </div>
+
     <footer>
         <p>Created with love for a special day.</p>
     </footer>
+
+    <script>
+        // Start Music and Reveal Page
+        function startCard() {
+            var audio = document.getElementById("bg-music");
+            audio.play();
+            document.getElementById("welcome-screen").style.display = "none";
+        }
+
+        // Automatic Slideshow Script
+        let slideIndex = 0;
+        showSlides();
+
+        function showSlides() {
+            let slides = document.getElementsByClassName("slide");
+            let dots = document.getElementsByClassName("dot");
+            
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";  
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) {slideIndex = 1}    
+            
+            for (let i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+            
+            slides[slideIndex-1].style.display = "block";  
+            dots[slideIndex-1].className += " active";
+            
+            setTimeout(showSlides, 4000); // Changes image every 4 seconds
+        }
+    </script>
 
 </body>
 </html>
